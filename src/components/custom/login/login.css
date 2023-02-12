@@ -1,0 +1,44 @@
+.login-wrapper{
+    margin: 100px auto;
+    max-width: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    background-color: rgb(110, 110, 207);
+    color: white;
+    border-radius: 10px;
+    box-shadow: 0 5px 10px 1px rgba(0, 0, 0, 0.342);
+}
+
+.heading{
+    font-size: 30px;
+    letter-spacing: 5px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+input{
+    padding: 10px;
+    font-size: 20px;
+    color: rgb(56, 70, 75);
+}
+
+input:focus{
+    outline: none;
+}
+
+button{
+    padding: 10px;
+    font-size: 20px;
+    color: white;
+    background-color: transparent;
+    border: 2px solid white;
+    margin: 20px 0;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover{
+    transform: translateY(-5px);
+}
