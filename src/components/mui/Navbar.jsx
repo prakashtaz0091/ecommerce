@@ -20,13 +20,12 @@ import { loggedIn, loggedOut } from '../../redux/user/userSlice'
 
 import "./navbar.css"
 
-const pages = ['Products', 'Pricing', 'Blog'];
+const pages = ['Products', 'Pricing'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
 
     const isLoggedIn = useSelector((state) => state.user.loggedIn)
-    const dispatch = useDispatch()
 
 
 

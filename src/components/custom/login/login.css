@@ -22,6 +22,7 @@ input{
     padding: 10px;
     font-size: 20px;
     color: rgb(56, 70, 75);
+    
 }
 
 input:focus{
@@ -39,6 +40,19 @@ button{
     transition: 0.2s;
 }
 
-button:hover{
+button[type='submit']:hover{
     transform: translateY(-5px);
+}
+
+.row{
+    display: flex;
+    align-items: center;
+}
+
+.row input{
+    width: 85%;
+}
+
+.reset-btn{
+    all: unset;
 }
