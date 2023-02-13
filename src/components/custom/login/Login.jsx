@@ -11,8 +11,8 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
-  const [username, setUsername] = React.useState(null)
-  const [password, setPassword] = React.useState(null)
+  const [username, setUsername] = React.useState("")
+  const [password, setPassword] = React.useState("")
 
   const [visible,setVisible] = React.useState(false)
   const [inputType, setInputType] = React.useState("password")
