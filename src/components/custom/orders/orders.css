@@ -1,6 +1,6 @@
-.login-wrapper{
-    margin: 100px auto;
-    max-width: 300px;
+.orders-wrapper {
+    margin: 50px auto;
+    max-width: 900px;
     display: flex;
     flex-direction: column;
     gap: 20px;
@@ -11,25 +11,25 @@
     box-shadow: 0 5px 10px 1px rgba(0, 0, 0, 0.342);
 }
 
-.heading{
+.heading {
     font-size: 30px;
     letter-spacing: 5px;
     text-align: center;
     margin: 20px 0;
 }
 
-input{
+input {
     padding: 10px;
     font-size: 20px;
     color: rgb(56, 70, 75);
-    
+
 }
 
-input:focus{
+input:focus {
     outline: none;
 }
 
-button{
+button {
     padding: 10px;
     font-size: 20px;
     color: white;
@@ -40,28 +40,45 @@ button{
     transition: 0.2s;
 }
 
-button[type='submit']:hover{
-    transform: translateY(-5px);
+button:hover{
+    background-color: aqua;
+    color: blueviolet;
 }
 
-.row{
+.row {
     display: flex;
     align-items: center;
 }
 
-.row input{
+.row input {
     width: 85%;
 }
 
-.reset-btn{
+.reset-btn {
     all: unset;
 }
 
-select{
+select {
     padding: 10px;
     font-size: 20px;
 }
 
-select:focus{
+select:focus {
     outline: none;
+}
+
+table{
+    width: 100%;
+}
+
+table,
+th,
+td {
+    border: 2px solid rgb(255, 255, 255);
+    border-collapse: collapse;
+    align-self: center;
+}
+
+td, th{
+    padding: 10px;
 }

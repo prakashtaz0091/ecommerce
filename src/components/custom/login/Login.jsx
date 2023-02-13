@@ -11,6 +11,7 @@ const Login = () => {
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
+  const [role,setRole] = React.useState("customer")
   const [username, setUsername] = React.useState("")
   const [password, setPassword] = React.useState("")
 
@@ -29,13 +30,17 @@ const Login = () => {
   }
 
   function handleLogin() {
-    dispatch(loggedIn())
+    dispatch(loggedIn({username,role}))
     navigate("/")
   }
 
   return (
     <div className='login-wrapper'>
       <div className="heading">LOGIN</div>
+      <select name="" id="role" value={role} onChange={e=>setRole(e.currentTarget.value)} >
+        <option value="customer" >Customer</option>
+        <option value="admin">Admin</option>
+      </select>
       <input type="text" placeholder='username' required value={username} onChange={e => setUsername(e.currentTarget.value)} />
       <div className="row">
         <input type={inputType} required placeholder='password' value={password} onChange={e => setPassword(e.currentTarget.value)} />

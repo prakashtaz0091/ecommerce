@@ -12,7 +12,7 @@ export default function MediaCard({product}) {
       <CardMedia
         sx={{ height: 140 }}
         image = {`${product.thumbnail}`} 
-        title="green iguana"
+        title={`${product.title}`} 
       />
       <CardContent>
         <Typography gutterBottom variant="h5" component="div">

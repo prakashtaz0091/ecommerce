@@ -13,21 +13,20 @@ import Tooltip from '@mui/material/Tooltip';
 import MenuItem from '@mui/material/MenuItem';
 import AdbIcon from '@mui/icons-material/Adb';
 
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
-import { useSelector, useDispatch } from 'react-redux'
-import { loggedIn, loggedOut } from '../../redux/user/userSlice'
-
+import { useSelector,useDispatch } from 'react-redux'
+import { loggedOut } from '../../redux/user/userSlice';
 import "./navbar.css"
 
-const pages = ['Products', 'Pricing'];
+const pages = ['Add Products', 'Orders'];
 const settings = ['Profile', 'Account', 'Dashboard', 'Logout'];
 
 function ResponsiveAppBar() {
 
-    const isLoggedIn = useSelector((state) => state.user.loggedIn)
-
-
+    const user = useSelector((state) => state.user)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -43,12 +42,24 @@ function ResponsiveAppBar() {
         setAnchorElUser(event.currentTarget);
     };
 
-    const handleCloseNavMenu = () => {
+    const handleCloseNavMenu = (page) => {
         setAnchorElNav(null);
+        if (user.role === "admin" && page === "Add Products") {
+            navigate("/add-product")
+        }
+        else if (user.role === "admin" && page === "Orders") {
+            navigate("/orders")
+        }
+        else {
+            navigate("/login")
+        }
     };
 
-    const handleCloseUserMenu = () => {
+    const handleCloseUserMenu = (setting) => {
         setAnchorElUser(null);
+        if(setting==="Logout"){
+            dispatch(loggedOut())
+        }
     };
 
     return (
@@ -103,8 +114,9 @@ function ResponsiveAppBar() {
                                 display: { xs: 'block', md: 'none' },
                             }}
                         >
-                            {pages.map((page) => (
-                                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                            {user.role === "admin" && pages.map((page) => (
+
+                                <MenuItem key={page} onClick={e => handleCloseNavMenu(page)}>
                                     <Typography textAlign="center">{page}</Typography>
                                 </MenuItem>
                             ))}
@@ -130,10 +142,10 @@ function ResponsiveAppBar() {
                         LOGO
                     </Typography>
                     <Box sx={{ flexGrow: 1, display: { xs: 'none', md: 'flex' } }}>
-                        {pages.map((page) => (
+                        {user.role === "admin" && pages.map((page) => (
                             <Button
                                 key={page}
-                                onClick={handleCloseNavMenu}
+                                onClick={e => handleCloseNavMenu(page)}
                                 sx={{ my: 2, color: 'white', display: 'block' }}
                             >
                                 {page}
@@ -142,12 +154,12 @@ function ResponsiveAppBar() {
                     </Box>
 
                     <Box sx={{ flexGrow: 0 }}>
-
+                        {user.role}
                         {
-                            isLoggedIn ?
+                            user.loggedIn ?
                                 <Tooltip title="Open settings">
                                     <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                                        <Avatar alt="Remy Sharp" src="/static/images/avatar/2.jpg" />
+                                        <Avatar alt={user.username} src="/static/images/avatar/2.jpg" />
                                     </IconButton>
                                 </Tooltip> :
 
@@ -174,7 +186,7 @@ function ResponsiveAppBar() {
                             onClose={handleCloseUserMenu}
                         >
                             {settings.map((setting) => (
-                                <MenuItem key={setting} onClick={handleCloseUserMenu}>
+                                <MenuItem key={setting} onClick={e=>handleCloseUserMenu(setting)}>
                                     <Typography textAlign="center">{setting}</Typography>
                                 </MenuItem>
                             ))}
